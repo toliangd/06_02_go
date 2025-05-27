@@ -18,11 +18,11 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: go build cmd
-
-    - name: Test
-      run: curl -s http://localhost:8443.
-
+      run: | 
+          go build cmd &
+          sleep 10
+          curl -s http://localhost:8443
+          kill $!
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
